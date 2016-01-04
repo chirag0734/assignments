@@ -1,0 +1,12 @@
+com\assignment\employee\DAO\DataStore.class
+com\assignment\employee\serviceactivator\EmployeeService.class
+com\assignment\employee\rest\CreateEmployeeResource.class
+com\assignment\employee\route\EmployeeRoute.class
+com\assignment\employee\model\Employee.class
+com\assignment\employee\bean\CreateEmployee.class
+com\assignment\employee\rest\GetEmployeeResource.class
+com\assignment\employee\Application.class
+com\assignment\employee\DAO\MongoDBSaveEmployee.class
+com\assignment\employee\bean\GetEmployee.class
+com\assignment\employee\mongodb\EmployeeDataMongoConfig.class
+com\assignment\employee\mongodb\AbstractMongoConfiguration.class
