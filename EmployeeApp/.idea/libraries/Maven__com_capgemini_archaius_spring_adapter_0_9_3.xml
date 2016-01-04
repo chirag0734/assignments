@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.capgemini:archaius-spring-adapter:0.9.3">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/capgemini/archaius-spring-adapter/0.9.3/archaius-spring-adapter-0.9.3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/capgemini/archaius-spring-adapter/0.9.3/archaius-spring-adapter-0.9.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/capgemini/archaius-spring-adapter/0.9.3/archaius-spring-adapter-0.9.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

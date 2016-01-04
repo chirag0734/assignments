@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring-2.11.0.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <import resource="classpath:cxf-server.xml" />
+
+    <!-- Declare a Camel context -->
+    <!-- By defining this in a Spring XML file, Camel uses the ApplicationContextRegistry by default -->
+    <camel:camelContext trace="true">
+        <camel:routeBuilder ref="employeeRoute" />
+    </camel:camelContext>
+
+    <bean id="bridgePropertyPlaceholder" class="com.capgemini.archaius.spring.ArchaiusBridgePropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="initialDelayMillis" value="5000" />
+        <property name="delayMillis" value="5000" />
+        <property name="ignoreDeletesFromSource" value="true" />
+        <property name="locations">
+            <list>
+                <!-- local environments -->
+                <value>file:src/main/resources/not_packaged_in_archive/dev/config/indicia-camel.properties</value>
+                <value>file:src/main/resources/not_packaged_in_archive/dev/config/employee-env.properties</value>
+                <value>file:src/main/resources/not_packaged_in_archive/dev/config/indicia-metrics.properties</value>
+                <value>file:src/main/resources/not_packaged_in_archive/dev/config/indicia-hystrix.properties</value>
+                <value>file:src/main/resources/application.properties</value>
+                <!-- deployed environments -->
+                <value>file:config/indicia-camel.properties</value>
+                <value>file:config/indicia-env.properties</value>
+                <value>file:config/indicia-metrics.properties</value>
+                <value>file:config/indicia-hystrix.properties</value>
+                <value>file:config/application.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- Route references mentioned above as Spring Beans -->
+    <bean id="employeeRoute" class="com.assignment.employee.route.EmployeeRoute"/>
+    
+    <!-- Spring Beans used in the Camel routes -->
+    <!-- Spring Boot Starter Bean -->
+
+    <bean id="application" class="com.assignment.employee.Application"/>
+    <bean id="createEmployeeBean" class="com.assignment.employee.bean.CreateEmployee"/>
+    <bean id="getEmployeeBean" class="com.assignment.employee.bean.GetEmployee"/>
+
+</beans>

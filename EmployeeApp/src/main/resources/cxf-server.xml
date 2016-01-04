@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:cxf="http://camel.apache.org/schema/cxf"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://camel.apache.org/schema/cxf
+                            http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+
+   <!-- <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />-->
+
+    <bean id="getEmployee" class="com.assignment.employee.rest.GetEmployeeResource"/>
+    <bean id="createEmployee" class="com.assignment.employee.rest.CreateEmployeeResource"/>
+    <bean id="deleteEmployee" class="com.assignment.employee.rest.DeleteEmployeeResource"/>
+    <bean id="jacksonJsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
+
+    <cxf:rsServer id="getEmployeeRESTServer" address="/employee/get/">
+        <cxf:serviceBeans>
+            <ref bean="getEmployee"/>
+        </cxf:serviceBeans>
+    </cxf:rsServer>
+
+    <cxf:rsServer id="createEmployeeRESTServer" address="/employee/create/">
+        <cxf:serviceBeans>
+            <ref bean="createEmployee"/>
+        </cxf:serviceBeans>
+        <cxf:providers>
+            <ref bean="jacksonJsonProvider"/>
+        </cxf:providers>
+    </cxf:rsServer>
+
+    <cxf:rsServer id="deleteEmployeeRESTServer" address="/employee/delete/">
+        <cxf:serviceBeans>
+            <ref bean="deleteEmployee"/>
+        </cxf:serviceBeans>
+    </cxf:rsServer>
+
+</beans>
